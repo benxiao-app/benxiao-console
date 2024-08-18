@@ -20,6 +20,22 @@ export const getUserList = params => {
   })
 }
 
+export const createUser = params => {
+  return axios.request({
+    url: 'user',
+    method: 'post',
+    data: params
+  })
+}
+
+export const changePassword = params => {
+  return axios.request({
+    url: 'user/' + params.id + '/change',
+    method: 'post',
+    data: params
+  })
+}
+
 export const getUserInfo = id => {
   return axios.request({
     url: 'user/' + id,

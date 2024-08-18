@@ -1,13 +1,5 @@
 import {
-  login,
-  // logout,
-  // getUserInfo,
-  getMessage,
-  getContentByMsgId,
-  hasRead,
-  removeReaded,
-  restoreTrash,
-  getUnreadCount
+  login
 } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
 import { TOKEN_KEY } from '../../libs/util'
@@ -21,12 +13,6 @@ export default {
     token: getToken(),
     access: '',
     hasGetInfo: false
-    // unreadCount: 0,
-    // staff: 0,
-    // messageUnreadList: [],
-    // messageReadedList: [],
-    // messageTrashList: [],
-    // messageContentStore: {}
   },
   mutations: {
     setAvatar (state, avatar) {
