@@ -36,9 +36,9 @@ export const changePassword = params => {
   })
 }
 
-export const getUserInfo = id => {
+export const getUserInfo = token => {
   return axios.request({
-    url: 'user/' + id,
+    url: 'user/info',
     params: {},
     method: 'get'
   })

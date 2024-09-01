@@ -30,17 +30,16 @@ export default {
     ]),
     handleSubmit ({ username, password }) {
       this.handleLogin({ username, password }).then(res => {
-        if (res != null) {
-          this.getUserInfo(res).then(res => {
-            this.$router.push({
-              name: this.$config.homeName
-            })
-            Vue.$Notice.success({
-              title: '登录成功!',
-              duration: 3
-            })
+        console.log('res:' + res)
+        this.getUserInfo().then(res => {
+          this.$router.push({
+            name: this.$config.homeName
           })
-        }
+          Vue.$Notice.success({
+            title: '登录成功!',
+            duration: 3
+          })
+        })
       })
     }
   }

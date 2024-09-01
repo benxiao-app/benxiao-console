@@ -141,8 +141,7 @@
 </template>
 
 <script>
-import { RingProgress } from '@antv/g2plot'
-import { getConsumeSummary, getRechargeSummary } from '@/api/data'
+
 export default {
   name: 'home',
   components: {},
@@ -187,106 +186,8 @@ export default {
     }
   },
   created () {
-    getConsumeSummary().then(res => {
-      this.consumeResult = res
-      new RingProgress(
-        'consume_today',
-        this.getRingProgressData(
-          this.consumeResult.consume_today,
-          this.consumeResult.consume_yesterday
-        )
-      ).render()
-      new RingProgress(
-        'consume_this_week',
-        this.getRingProgressData(
-          this.consumeResult.consume_this_week,
-          this.consumeResult.consume_last_week
-        )
-      ).render()
-      new RingProgress(
-        'consume_this_month',
-        this.getRingProgressData(
-          this.consumeResult.consume_this_month,
-          this.consumeResult.consume_last_month
-        )
-      ).render()
-      new RingProgress(
-        'consume_this_quarter',
-        this.getRingProgressData(
-          this.consumeResult.consume_this_quarter,
-          this.consumeResult.consume_last_quarter
-        )
-      ).render()
-      new RingProgress(
-        'consume_this_year',
-        this.getRingProgressData(
-          this.consumeResult.consume_this_year,
-          this.consumeResult.consume_last_year
-        )
-      ).render()
-      new RingProgress(
-        'consume_total',
-        this.getRingProgressData(
-          this.consumeResult.total,
-          0
-        )
-      ).render()
-    })
-    getRechargeSummary().then(res => {
-      this.rechargeResult = res
-      new RingProgress(
-        'recharge_today',
-        this.getRingProgressData(
-          this.rechargeResult.recharge_today,
-          this.rechargeResult.recharge_yesterday
-        )
-      ).render()
-      new RingProgress(
-        'recharge_this_week',
-        this.getRingProgressData(
-          this.rechargeResult.recharge_this_week,
-          this.rechargeResult.recharge_last_week
-        )
-      ).render()
-      new RingProgress(
-        'recharge_this_month',
-        this.getRingProgressData(
-          this.rechargeResult.recharge_this_month,
-          this.rechargeResult.recharge_last_month
-        )
-      ).render()
-      new RingProgress(
-        'recharge_this_quarter',
-        this.getRingProgressData(
-          this.rechargeResult.recharge_this_quarter,
-          this.rechargeResult.recharge_last_quarter
-        )
-      ).render()
-      new RingProgress(
-        'recharge_this_year',
-        this.getRingProgressData(
-          this.rechargeResult.recharge_this_year,
-          this.rechargeResult.recharge_last_year
-        )
-      ).render()
-      new RingProgress(
-        'recharge_total',
-        this.getRingProgressData(
-          this.rechargeResult.total,
-          0
-        )
-      ).render()
-    })
   },
   mounted () {
-    // new RingProgress(
-    //   "consume_this_week",
-    //   this.getRingProgressData("今日消费", this.consumeResult.consume_today)
-    // ).render()
-    // new RingProgress(
-    //   "consume_this_month",
-    //   this.getRingProgressData("今日消费", this.consumeResult.consume_today)
-    // ).render()
   }
 }
 </script>
