@@ -1,0 +1,10 @@
+apiVersion: v2
+name: benxiao-console
+description: a net cloud service based on MinIO
+version: 1.0.0
+maintainers:
+  - name: kinson
+    email: mail.kinson.liu@gmail.com
+    url: www.kinson.fun
+sources:
+  - https://github.com/benxiao-app/benxiao-console

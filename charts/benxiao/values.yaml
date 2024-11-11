@@ -1,0 +1,19 @@
+replicaCount: 2
+image:
+  registry: "registry.kinson.fun"
+  repository: "benxiao/benxiao-console"
+  tag: "{{.Image.Tag}}"
+service:
+  port: 80
+ingress:
+  hosts:
+    - host: benxiao-admin.kinson.fun
+      paths:
+        - path: /
+resources:
+  requests:
+    cpu: "500m"
+    memory: "256Mi"
+  limits:
+    cpu: "1"
+    memory: "512Mi"
