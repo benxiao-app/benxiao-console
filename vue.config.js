@@ -38,7 +38,7 @@ module.exports = {
   productionSourceMap: false,
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的publicPath要写为 '' ，即空字符串
   devServer: {
-    allowedHosts: ['minio-admin.kinson.fun'],
+    allowedHosts: ['benxiao-admin.kinson.fun'],
     host: '0.0.0.0' // 监听所有网络接口
     // proxy: 'http://localhost:8000'
     // proxy: {
