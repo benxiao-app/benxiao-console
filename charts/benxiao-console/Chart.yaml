@@ -1,7 +1,7 @@
 apiVersion: v2
 name: benxiao-console
 description: a net cloud service based on MinIO
-version: 1.0.5
+version: 1.0.6
 maintainers:
   - name: kinson
     email: mail.kinson.liu@gmail.com
