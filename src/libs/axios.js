@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import axios from 'axios'
-import globalConfig from '@/config'
 import { getToken } from '@/libs/util'
 
 class HttpRequest {
@@ -70,18 +69,9 @@ class HttpRequest {
   }
 
   urlRouter (config, options) {
-    const jobURL = process.env.NODE_ENV === 'development' ? globalConfig.jobUrl.dev : globalConfig.jobUrl.pro
-    const messageUrl = process.env.NODE_ENV === 'development' ? globalConfig.messageUrl.dev : globalConfig.messageUrl.pro
     const urlconfig = {
       baseURL: config.baseURL,
       headers: config.headers
-    }
-    const url = options.url.split('/', 1)[0]
-    if (url === 'scheduler') {
-      urlconfig.baseURL = jobURL
-    }
-    if (url === 'message') {
-      urlconfig.baseURL = messageUrl
     }
     return urlconfig
   }
