@@ -39,16 +39,9 @@ module.exports = {
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的publicPath要写为 '' ，即空字符串
   devServer: {
     allowedHosts: ['benxiao-admin.kinson.fun'],
-    host: '0.0.0.0' // 监听所有网络接口
+    host: '0.0.0.0', // 监听所有网络接口
+    hot: false, // 禁用 HMR
+    liveReload: false // 禁用实时刷新
     // proxy: 'http://localhost:8000'
-    // proxy: {
-    //   '/api':{
-    //     target:'http://localhost:8000',
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/api': ''
-    //     }
-    //   }
-    // }
   }
 }
