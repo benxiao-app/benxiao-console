@@ -16,9 +16,9 @@ export default {
   /**
    * @description api请求基础路径
    */
-  baseUrl: {
+  publicPath: {
     dev: 'http://localhost:8080',
-    pro: 'https://minio-admin.kinson.fun'
+    pro: 'https://minio-admin.kinson.fun/api'
   },
   /**
    * @description 默认打开的首页的路由name值，默认为home
