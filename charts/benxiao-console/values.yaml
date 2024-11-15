@@ -4,7 +4,7 @@ image:
   repository: "benxiao/benxiao-console"
   tag: "{{.Image.Tag}}"
 service:
-  port: 80
+  port: 8080
 ingress:
   hosts:
     - host: benxiao-admin.kinson.fun
