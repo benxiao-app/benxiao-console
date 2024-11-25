@@ -9,35 +9,12 @@ jobs:
       PENSIEVE_EVENT: ${PENSIEVE_WORKSPACE}
     steps:
     - uses: actions/checkout@v4
-    - name: Set up PENSIEVE_WORKSPACE from system environment
-      run: echo "PENSIEVE_EVENT=${PENSIEVE_EVENT}" >> $GITHUB_ENV
-    - name: Print PENSIEVE_EVENT
-      run: echo "PENSIEVE_EVENT is ${{ env.PENSIEVE_EVENT }}"
-    - name: Determine version using GitVersion Docker
+    - name: Git Version
       id: gitversion
-      run: |
-        echo "Using PENSIEVE_EVENT: ${{ env.PENSIEVE_EVENT }}"
-        docker run --rm \
-          -v ${{ env.PENSIEVE_EVENT }}:/repo \
-          registry.kinson.fun/gittools/gitversion:6.0.5-ubuntu.22.04-8.0 \
-          /repo /output json > gitversion.json
-
+      uses: codacy/git-version@2.4.0
     - name: Set GitVersion to environment variables
       run: |
-        VERSION=$(jq -r .FullSemVer gitversion.json)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
-    # - name: Use GitVersion
-    #   id: gitversion
-    #   uses: gittools/actions/gitversion/execute@v0.10.0
-    #   with:
-    #     useConfigFile: true  # 如果有 GitVersion.yml，则会自动使用
-    - name: Set GitVersion to environment variables
-      run: |
-        echo "VERSION=${{ steps.gitversion.outputs.FullSemVer }}" >> $GITHUB_ENV
-        echo "MAJOR=${{ steps.gitversion.outputs.Major }}" >> $GITHUB_ENV
-        echo "MINOR=${{ steps.gitversion.outputs.Minor }}" >> $GITHUB_ENV
-        echo "PATCH=${{ steps.gitversion.outputs.Patch }}" >> $GITHUB_ENV
-        echo "PRE_RELEASE_TAG=${{ steps.gitversion.outputs.PreReleaseTag }}" >> $GITHUB_ENV
+        echo "VERSION=${{ steps.gitversion.outputs.version }}" >> $GITHUB_ENV
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag registry.kinson.fun/benxiao/benxiao-console:${{ env.VERSION }}
     - name: Push the Docker image
