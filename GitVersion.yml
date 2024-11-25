@@ -3,9 +3,9 @@ mode: ContinuousDelivery
 branches:
   main:
     regex: ^main$
-    is-mainline: true # 主线分支，版本控制的起点
+    # is-mainline: true # 主线分支，版本控制的起点
     increment: Minor # 主分支上版本号按次要版本递增
-    prevent-increment-of-merged-branch-version: true # 防止合并时版本号递增
+    # prevent-increment-of-merged-branch-version: true # 防止合并时版本号递增
     tracks-release-branches: true # 跟踪从 release 分支合并的版本
     source-branches: [] # 主分支不限制来源，但其他分支通常不能直接向 main 合并
 
@@ -13,30 +13,30 @@ branches:
     regex: ^develop$
     source-branches: [main, feature, hotfix, release] # 开发分支接受的来源分支
     increment: Minor # 开发分支的版本号按次要版本递增
-    is-mainline: false
+    # is-mainline: false
 
   feature:
     regex: ^feature/.*$
     source-branches: [develop, main] # 特性分支只能从 develop 或 main 创建
     increment: Patch # 新功能按补丁版本递增
-    is-mainline: false
+    # is-mainline: false
     is-release-branch: false # 特性分支不用于发布
 
   hotfix:
     regex: ^hotfix/.*$
     source-branches: [main, release] # 热修复分支只能从 main 或 release 创建
     increment: Patch # 热修复按补丁版本递增
-    is-mainline: false
+    # is-mainline: false
 
   release:
     regex: ^release/.*$
     source-branches: [develop] # 发布分支只能从 develop 创建
     increment: None # 发布分支一般不修改版本号，直接继承
-    is-mainline: false
+    # is-mainline: false
 
 # ignore:
 #   sha: [] # 可在此指定需要忽略的提交哈希
-#   commits-before: null # 忽略某个时间点之前的提交记录（可选）
+  # commits-before: 2024-01-01T00:00:00 # 忽略某个时间点之前的提交记录（可选）
 
 # merge-message-formats:
 #   default: "Merge branch '{BranchName}'" # 自定义合并消息格式（可选）
@@ -44,4 +44,4 @@ branches:
 next-version: 1.0.0 # 设置初始版本号，首次运行时会以此为基础
 
 # 标记规则和附加行为
-tag-prefix: "v" # 版本号标签的前缀
+# tag-prefix: "v" # 版本号标签的前缀

@@ -5,30 +5,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VERSION: $VERSION
     steps:
     - uses: actions/checkout@v4
-    - name: Set PENSIEVE_WORKSPACE to Github env
-      run: echo "PENSIEVE_WORKSPACE=$PENSIEVE_WORKSPACE" >> $GITHUB_ENV
-    - name: Print PENSIEVE_WORKSPACE
-      run: echo "PENSIEVE_WORKSPACE is ${{ env.PENSIEVE_WORKSPACE }}"
-    - name: Git Version
-      id: gitversion
-      run: |
-        docker run --rm \
-          -v ${{ env.PENSIEVE_WORKSPACE }}:/repo \
-          registry.kinson.fun/gittools/gitversion:6.0.5-ubuntu.22.04-8.0 \
-          /repo /output json > gitversion.json
-    - name: Set GitVersion to environment variables
-      run: |
-        VERSION=$(jq -r .FullSemVer gitversion.json)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
-    - name: Set GitVersion to environment variables
-      run: |
-        echo "VERSION=${{ steps.gitversion.outputs.FullSemVer }}" >> $GITHUB_ENV
-        echo "MAJOR=${{ steps.gitversion.outputs.Major }}" >> $GITHUB_ENV
-        echo "MINOR=${{ steps.gitversion.outputs.Minor }}" >> $GITHUB_ENV
-        echo "PATCH=${{ steps.gitversion.outputs.Patch }}" >> $GITHUB_ENV
-        echo "PRE_RELEASE_TAG=${{ steps.gitversion.outputs.PreReleaseTag }}" >> $GITHUB_ENV
+    - name: Print project version
+      run: echo "Project version is ${{ env.VERSION }}"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag registry.kinson.fun/benxiao/benxiao-console:${{ env.VERSION }}
     - name: Push the Docker image
