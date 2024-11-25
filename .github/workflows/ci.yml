@@ -6,9 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PENSIEVE_EVENT: ${PENSIEVE_WORKSPACE}
+      PENSIEVE_EVENT: ${PENSIEVE_EVENT}
     steps:
     - uses: actions/checkout@v4
+    - name: Print PENSIEVE_EVENT
+      run: echo "PENSIEVE_EVENT is ${{ env.PENSIEVE_EVENT }}"
     - name: Git Version
       id: gitversion
       uses: codacy/git-version@2.4.0
