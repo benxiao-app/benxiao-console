@@ -5,13 +5,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PENSIEVE_WORKSPACE: ${PENSIEVE_WORKSPACE}
     steps:
     - uses: actions/checkout@v4
+    - name: Set up PENSIEVE_WORKSPACE from system environment
+      run: echo "PENSIEVE_WORKSPACE=${PENSIEVE_WORKSPACE}" >> $GITHUB_ENV
     - name: Determine version using GitVersion Docker
       id: gitversion
       run: |
         docker run --rm \
-          -v ${PENSIEVE_WORKSPACE}:/repo \
+          -v ${{ env.PENSIEVE_WORKSPACE }}:/repo \
           registry.kinson.fun/gittools/gitversion:6.0.5-ubuntu.22.04-8.0 \
           /repo /output json > gitversion.json
 
