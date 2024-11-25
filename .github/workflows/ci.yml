@@ -6,19 +6,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PENSIEVE_WORKSPACE: ${PENSIEVE_WORKSPACE}
+      PENSIEVE_EVENT: ${PENSIEVE_WORKSPACE}
     steps:
     - uses: actions/checkout@v4
     - name: Set up PENSIEVE_WORKSPACE from system environment
-      run: echo "PENSIEVE_WORKSPACE=${PENSIEVE_WORKSPACE}" >> $GITHUB_ENV
-    - name: Print PENSIEVE_WORKSPACE
-      run: echo "PENSIEVE_WORKSPACE is ${{ env.PENSIEVE_WORKSPACE }}"
+      run: echo "PENSIEVE_EVENT=${PENSIEVE_EVENT}" >> $GITHUB_ENV
+    - name: Print PENSIEVE_EVENT
+      run: echo "PENSIEVE_EVENT is ${{ env.PENSIEVE_EVENT }}"
     - name: Determine version using GitVersion Docker
       id: gitversion
       run: |
-        echo "Using PENSIEVE_WORKSPACE: ${{ env.PENSIEVE_WORKSPACE }}"
+        echo "Using PENSIEVE_EVENT: ${{ env.PENSIEVE_EVENT }}"
         docker run --rm \
-          -v ${{ env.PENSIEVE_WORKSPACE }}:/repo \
+          -v ${{ env.PENSIEVE_EVENT }}:/repo \
           registry.kinson.fun/gittools/gitversion:6.0.5-ubuntu.22.04-8.0 \
           /repo /output json > gitversion.json
 
