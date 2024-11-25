@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Set PENSIEVE_EVENT to Github env
-      run: echo "PENSIEVE_EVENT=$PENSIEVE_EVENT" >> $GITHUB_ENV
-    - name: Print PENSIEVE_EVENT
-      run: echo "PENSIEVE_EVENT is ${{ env.PENSIEVE_EVENT }}"
+    - name: Set PENSIEVE_WORKSPACE to Github env
+      run: echo "PENSIEVE_WORKSPACE=$PENSIEVE_WORKSPACE" >> $GITHUB_ENV
+    - name: Print PENSIEVE_WORKSPACE
+      run: echo "PENSIEVE_WORKSPACE is ${{ env.PENSIEVE_WORKSPACE }}"
     - name: Git Version
       id: gitversion
       uses: codacy/git-version@2.4.0
