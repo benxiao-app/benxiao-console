@@ -9,8 +9,6 @@ jobs:
       VERSION: $VERSION
     steps:
     - uses: actions/checkout@v4
-    - name: Print project version
-      run: echo "Project version is ${{ env.VERSION }}"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag registry.kinson.fun/benxiao/benxiao-console:${{ env.VERSION }}
     - name: Push the Docker image
