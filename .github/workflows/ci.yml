@@ -5,10 +5,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PENSIEVE_EVENT: ${PENSIEVE_EVENT}
     steps:
     - uses: actions/checkout@v4
+    - name: Set PENSIEVE_EVENT to Github env
+      run: echo "PENSIEVE_EVENT=$PENSIEVE_EVENT" >> $GITHUB_ENV
     - name: Print PENSIEVE_EVENT
       run: echo "PENSIEVE_EVENT is ${{ env.PENSIEVE_EVENT }}"
     - name: Git Version
