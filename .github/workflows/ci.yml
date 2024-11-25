@@ -11,7 +11,7 @@ jobs:
       id: gitversion
       run: |
         docker run --rm \
-          -v ${{ github.workspace }}:/repo \
+          -v ${{ env.PENSIEVE_WORKSPACE }}:/repo \
           registry.kinson.fun/gittools/gitversion:6.0.5-ubuntu.22.04-8.0 \
           /repo /output json > gitversion.json
 
