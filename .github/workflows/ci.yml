@@ -13,10 +13,22 @@ jobs:
       run: echo "PENSIEVE_WORKSPACE is ${{ env.PENSIEVE_WORKSPACE }}"
     - name: Git Version
       id: gitversion
-      uses: codacy/git-version@2.4.0
+      run: |
+        docker run --rm \
+          -v ${{ env.PENSIEVE_WORKSPACE }}:/repo \
+          registry.kinson.fun/gittools/gitversion:6.0.5-ubuntu.22.04-8.0 \
+          /repo /output json > gitversion.json
     - name: Set GitVersion to environment variables
       run: |
-        echo "VERSION=${{ steps.gitversion.outputs.version }}" >> $GITHUB_ENV
+        VERSION=$(jq -r .FullSemVer gitversion.json)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+    - name: Set GitVersion to environment variables
+      run: |
+        echo "VERSION=${{ steps.gitversion.outputs.FullSemVer }}" >> $GITHUB_ENV
+        echo "MAJOR=${{ steps.gitversion.outputs.Major }}" >> $GITHUB_ENV
+        echo "MINOR=${{ steps.gitversion.outputs.Minor }}" >> $GITHUB_ENV
+        echo "PATCH=${{ steps.gitversion.outputs.Patch }}" >> $GITHUB_ENV
+        echo "PRE_RELEASE_TAG=${{ steps.gitversion.outputs.PreReleaseTag }}" >> $GITHUB_ENV
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag registry.kinson.fun/benxiao/benxiao-console:${{ env.VERSION }}
     - name: Push the Docker image
