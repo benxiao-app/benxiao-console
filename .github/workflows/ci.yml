@@ -14,6 +14,7 @@ jobs:
     - name: Determine version using GitVersion Docker
       id: gitversion
       run: |
+        echo "Using PENSIEVE_WORKSPACE: ${{ env.PENSIEVE_WORKSPACE }}"
         docker run --rm \
           -v ${{ env.PENSIEVE_WORKSPACE }}:/repo \
           registry.kinson.fun/gittools/gitversion:6.0.5-ubuntu.22.04-8.0 \
